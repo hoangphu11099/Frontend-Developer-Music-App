@@ -69,5 +69,12 @@ const musicAPI = [
     songSrc: "./Assets/songs/buocquamuacodon.mp3",
     songAvatar: "./Assets/Images/image10.jpg",
   },
+  {
+    id: 11,
+    songName: "KHÓA LY BIỆT",
+    songArtist: "Anh Tú",
+    songSrc: "./Assets/songs/khoalybiet.mp3",
+    songAvatar: "./Assets/Images/IMG11.jpg",
+  },
 ];
 export default musicAPI;
