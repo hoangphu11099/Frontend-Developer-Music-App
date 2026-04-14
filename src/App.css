@@ -1,38 +1,246 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700");
+@import url(https://fonts.googleapis.com/css?family=Audiowide);
+:root {
+  --mainColor: #fff;
+  --mainLightColor: rgba(235, 235, 235, 0.5);
+  --mainDimColor: rgb(228, 228, 228);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+.container {
   min-height: 100vh;
+  min-width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--mainColor);
+  font-family: "Audiowide";
+}
+
+.backgroundVideo {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+  object-fit: cover;
+  height: 100vh;
+  z-index: -1;
+  filter: saturate(2.5);
+}
+
+.blackScreen {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  pointer-events: none;
+  background-color: rgba(17, 17, 17, 0.2);
+}
+
+.music-Container {
+  width: 350px;
+  padding: 35px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 36px;
+  box-shadow:
+    0 0 20px rgba(26, 26, 26, 0.1),
+    0 0 40px rgba(26, 26, 26, 0.1),
+    0 0 80px rgba(26, 26, 26, 0.1);
+  backdrop-filter: blur(15px);
+  font-weight: 800;
+}
+.music-Info {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+}
+.musicPlayer {
+  margin: 0;
+  margin-bottom: 10px;
+  color: var(--mainLightColor);
 }
 
-.App-link {
-  color: #61dafb;
+.music-Head-Name {
+  margin: 0 auto;
+  font-size: 1.5rem;
+  text-align: center;
+  font-family: "Roboto Slab";
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.music-Artist-Name {
+  color: var(--mainDimColor);
+  margin: 4px 0;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+#songAvatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin: 18px 0;
+  position: relative;
+  cursor: pointer;
+  animation: animateAvatar 0.5s linear infinite;
+}
+
+@keyframes animateAvatar {
+  0%,
+  100% {
+    transform: scale(1);
   }
-  to {
-    transform: rotate(360deg);
+  50% {
+    transform: scale(1.05);
   }
+}
+
+.musicTimerDiv {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-weight: 600;
+}
+
+.musicProgressBar {
+  width: 100%;
+  margin-bottom: 16px;
+  height: 10px;
+  border-radius: 5px;
+  outline: none;
+  filter: hue-rotate(20deg);
+}
+
+.playBtn {
+  font-size: 34px;
+  margin: 8px 10px;
+  color: var(--mainColor);
+  cursor: pointer;
+  font-weight: 400;
+}
+.replayBtn {
+  transform: translateX(-250px); /* Di chuyển nút sang trái 10px */
+}
+.volumeBtn {
+  font-size: 32px;
+}
+.musicControler {
+  font-size: 34px;
+  color: var(--mainColor);
+  margin: 0 10px;
+}
+
+.changeBackBtn {
+  width: 200px;
+  height: 15px;
+  background-color: #eee;
+  position: absolute;
+  border-radius: 12px 12px 0 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  transition: 0.3s;
+  color: #eee;
+  cursor: pointer;
+  padding: 3px 0 0 0;
+  font-weight: 600;
+  text-align: center;
+}
+.playlistBtn {
+  width: 100px;
+  height: 25px;
+  background-color: #eee;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 12px 12px 12px 12px;
+  position: absolute;
+  left: 20px;
+  top: 10px;
+}
+.playlistBtn:hover {
+  color: #222;
+}
+.changeBackBtn:hover {
+  height: 30px;
+  color: #222;
+}
+.playlist {
+  width: 350px; /* Độ rộng của playlist-container */
+  height: 400px;
+  position: absolute;
+  left: 10px; /* Điều chỉnh khoảng cách từ bên trái */
+  top: 20px;
+  border-radius: 36px;
+  box-shadow:
+    0 0 20px rgba(26, 26, 26, 0.1),
+    0 0 40px rgba(26, 26, 26, 0.1),
+    0 0 80px rgba(26, 26, 26, 0.1);
+  backdrop-filter: blur(15px);
+  font-weight: 600;
+  overflow-y: auto;
+}
+.song-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.song-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.song-item img {
+  width: 60px; /* Điều chỉnh kích thước hình ảnh */
+  height: 60px; /* Điều chỉnh kích thước hình ảnh */
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.songArtist {
+  color: var(--mainDimColor); /* Màu chữ */
+  margin: 4px 0;
+  font-size: 0.85rem;
+  font-weight: 400;
+}
+.songName {
+  font-family: "Roboto Slab";
+}
+.playing .songName {
+  color: black; /* Màu chữ khi bài hát đang phát */
+}
+
+.playing .songArtist {
+  color: black; /* Màu chữ khi bài hát đang phát */
+}
+
+.playlist::-webkit-scrollbar {
+  width: 8px; /* Độ rộng của thanh cuộn */
+  border-radius: 8px; /* Bo tròn góc của thanh cuộn */
+}
+h1 {
+  color: var(--mainLightColor);
+}
+.playlist::-webkit-scrollbar-thumb {
+  background-color: --mainLightColor; /* Màu của thanh cuộn khi cuộn */
+  border-radius: 8px; /* Bo tròn góc của thanh cuộn */
+}
+
+.objectFitCover {
+  object-fit: cover;
+}
+
+.objectFitContain {
+  object-fit: contain;
 }
